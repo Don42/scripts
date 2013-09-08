@@ -7,27 +7,31 @@
 # Marco 'don' Kaulea
 # ----------------------------------------------------------------------------
 
-from urllib.request import urlopen
-from random import randint
+import urllib.request as req
+import random
+import sys
 
 
-def getRandomRfc():
+def get_random_rfc():
     while (True):
         counter = 0
         try:
-            if(counter > 10):
+            if(counter > 50):
                 break
-            ++counter
-            con = urlopen("http://www.rfc-editor.org/rfc/rfc%d.txt"
-                          % randint(1, 9999))
-            return (con.read().decode("utf-8"))
-            break
+            counter += 1
+            return get_rfc(random.randint(1, 9999))
         except Exception:
             continue
 
 
-def main():
-    print (getRandomRfc())
+def get_rfc(number):
+    link = "http://www.rfc-editor.org/rfc/rfc{number}.txt".format(number=number)
+    con = req.urlopen(link)
+    return (con.read().decode("utf-8"))
+
 
 if __name__ == "__main__":
-    main()
+    if (len(sys.argv) <= 1):
+        print(get_random_rfc())
+    else:
+        print(get_rfc(sys.argv[1]))
