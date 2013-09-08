@@ -6,10 +6,16 @@
 # this stuff is worth it, you can buy me a scotch whisky in return
 # Marco 'don' Kaulea
 # ----------------------------------------------------------------------------
+"""Random RFC
+
+Usage:
+    random_rfc.py
+    random_rfc.py <index>
+"""
 
 import urllib.request as req
 import random
-import sys
+import docopt as dopt
 
 
 def get_random_rfc():
@@ -31,7 +37,8 @@ def get_rfc(number):
 
 
 if __name__ == "__main__":
-    if (len(sys.argv) <= 1):
-        print(get_random_rfc())
+    arguments = dopt.docopt(__doc__)
+    if "index" in arguments:
+        print(get_rfc(arguments.index))
     else:
-        print(get_rfc(sys.argv[1]))
+        print(get_random_rfc())
