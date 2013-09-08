@@ -38,7 +38,7 @@ def get_rfc(number):
 
 if __name__ == "__main__":
     arguments = dopt.docopt(__doc__)
-    if "index" in arguments:
-        print(get_rfc(arguments.index))
+    if "<index>" in arguments and arguments["<index>"]:
+        print(get_rfc(arguments["<index>"]))
     else:
         print(get_random_rfc())
