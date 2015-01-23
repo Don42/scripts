@@ -23,6 +23,9 @@ class PageNotFoundException(Exception):
 
 
 def get_random_rfc():
+    """Get a random rfc by trying a random number between 1 and 9999
+
+    """
     while (True):
         counter = 0
         try:
@@ -37,6 +40,18 @@ def get_random_rfc():
 
 
 def get_rfc(number):
+    """Get the rfc with the specified id
+
+    Args:
+        number (int): id of the rfc
+
+    Returns:
+        string: Content of the rfc
+
+    Raises:
+        PageNotFoundException: If rfc with the id does not exist
+
+    """
     link = "http://www.rfc-editor.org/rfc/rfc{number}.txt".format(number=number)
     r = requests.get(link)
     r.encoding = 'utf-8'
