@@ -52,7 +52,8 @@ def get_rfc(number):
         PageNotFoundException: If rfc with the id does not exist
 
     """
-    link = "http://www.rfc-editor.org/rfc/rfc{number}.txt".format(number=number)
+    link = "http://www.rfc-editor.org/rfc/rfc{number}.txt".format(
+        number=number)
     r = requests.get(link)
     r.encoding = 'utf-8'
     if 200 == r.status_code:
